@@ -1,11 +1,13 @@
-var quote = "quote";
-var author = "author";
+var quote = "";
+var author = "";
+
 
 function replace() {
   var feed = $('[id^=topnews_main_stream], [id^=mostrecent_main_stream], [id^=pagelet_home_stream]');
   var x = document.getElementsByClassName("_2pie");
   // fetch_quote();
-  x[0].innerHTML = 'quote';
+  var html = `${quote} by ${author}`;
+  x[0].innerHTML = html;
 
   // this also hides the friends activities
   // feed.children().remove();
@@ -16,15 +18,32 @@ function replace() {
   // $('#pagelet_canvas_nav_content').remove();
 }
 
-function fetch_quote() {
-  const url = "http://quotes.rest/qod.json";
-  // $.get(url, function (data) {
-  //   quote = (data.contents.quotes[0].quote);
-  //   author = (data.contents.quotes[0].author);
-  // });
-  console.log(quote);
-  console.log(author);
-};
+// function build_HTML(tag, html, attrs) {
+//   if (typeof(html) != 'string') {
+//     attrs = html;
+//     html = null;
+//   }
+//   var h = '<' + tag;
+//   for (attr in attrs) {
+//     if(attrs[attr] === false) continue;
+//     h += ' ' + attr + '="' + attrs[attr] + '"';
+//   }
+//   return h += html ? ">" + html + "</" + tag + ">" : "/>";
+// }
 
+function fetch_quote() {
+  const url = "";
+  fetch("https://talaikis.com/api/quotes/random/")
+  .then(function(data) {
+    let res = data.json();
+    res.then(function(result) {
+      quote = result.quote;
+      author = result.author;
+    })
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+};
+fetch_quote();
 window.setInterval(replace, 100);
-fetch_quote()

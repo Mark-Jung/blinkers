@@ -50,5 +50,7 @@ function fetch_quote() {
     console.log(error);
   });
 };
+
+
 fetch_quote();
-window.setInterval(replace, 10);
+window.setInterval(replace, 90);

@@ -1,0 +1,16 @@
+{
+  "name": "blinkers",
+  "version": "0.1.0",
+  "description": "Limits your uncontrollable habit to check facebook news feed!",
+  "content_scripts": [{
+    "matches": ["*://*.facebook.com/*"],
+    "js": ["jquery-3.2.1.slim.min.js", "hide.js"],
+    "run_at": "document_start"
+  }],
+  "icons": {
+    "16": "img/active.png",
+    "48": "img/active.png",
+    "128": "img/active.png"
+  },
+  "manifest_version": 2
+}
